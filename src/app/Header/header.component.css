@@ -1,0 +1,16 @@
+ul {
+  list-style: none;
+  /* none removes bullet point*/
+  padding: 0;
+  margin: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+ /* makes sure the spacer element uses all space available*/
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
