@@ -1,7 +1,8 @@
 <mat-card>
   <!-- <form> form will auto create an object
     that represents this content, needs name -->
-  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
     <input
     matInput

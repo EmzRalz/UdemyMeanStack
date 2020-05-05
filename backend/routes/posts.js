@@ -3,7 +3,7 @@ const Post = require("../models/post");
 
 const router = express.Router();
 
-router.post((req, res, next) => {
+router.post("",(req, res, next) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content
@@ -31,7 +31,7 @@ router.put("/:id", (req, res, next) => {
 });
 
 //uses a new middleware
-router.get((req, res, next) =>{
+router.get("",(req, res, next) =>{
   Post.find()
     .then(documents => {
       //this is an asynch process,

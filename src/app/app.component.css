@@ -2,3 +2,7 @@ main {
   width: 80%;
   margin: 1rem auto;
 }
+
+mat-spinner {
+  margin: auto;
+}

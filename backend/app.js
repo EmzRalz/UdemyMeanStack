@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const postsRoutes = require("routes/posts");
+const postsRoutes = require("./routes/posts");
 
 const app = express();
 //big funnel, which has different partsA

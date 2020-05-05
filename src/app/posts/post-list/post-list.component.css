@@ -6,4 +6,8 @@
 .info-text{
   text-align: center;
 }
+
+mat-spinner{
+  margin: auto;
+}
 /* targets the element itself */
