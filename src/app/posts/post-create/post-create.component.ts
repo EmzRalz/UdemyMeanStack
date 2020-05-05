@@ -51,7 +51,8 @@ export class PostCreateComponent implements OnInit {
                 content: postData.content };
                 this.form.setValue({
                   'title': this.post.title,
-                  'content' : this.post.content
+                  'content' : this.post.content,
+                  'image': null
                 });
             });
         } else {
