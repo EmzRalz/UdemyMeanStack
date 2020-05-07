@@ -55,28 +55,55 @@ router.post(
   });
 });
 
-router.put("/:id"
-, (req, res, next) => {
-  const post = new Post({
-    _id: req.body.id,
-    title: req.body.title,
-    content: req.body.content
-  })
+router.put(
+  "/:id",
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+    let imagePath = req.body.imagePath;
+    if(req.file){
+      //new file uploaded
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename;
+    }
+
+    const post = new Post({
+      _id: req.body.id,
+      title: req.body.title,
+      content: req.body.content,
+      imagePath: imagePath
+    });
   Post.updateOne({_id: req.params.id}, post)
   .then(result => {
-    res.status(200).json({ message: 'Update successful.'});
+    res.status(200).json({ message: 'Update successful.', imagePath: imagePath});
   });
 });
 
 //uses a new middleware
 router.get("",(req, res, next) =>{
-  Post.find()
+  const pageSize = +req.query.pageSize;
+  //+ converts string to a number
+  const currentPage = +req.query.page;
+  //these query terms are arbitrary
+  const postQuery = Post.find();
+  let fetchedPosts;
+  if(pageSize && currentPage) {
+    postQuery
+      .skip(pageSize * (currentPage - 1))
+      .limit(pageSize);
+      //for large datasets this is inefficient
+  }
+  postQuery
     .then(documents => {
+      fetchedPosts = documents;
+      return Post.count();
+    })
+    .then(count => {
       //this is an asynch process,
       // so sending docs must go in the then block
       res.status(200).json({
         message: 'posts fetched successfully',
-        posts: documents
+        posts: fetchedPosts,
+        maxPosts: count
       });
     });
   //load will not finish until response is sent
