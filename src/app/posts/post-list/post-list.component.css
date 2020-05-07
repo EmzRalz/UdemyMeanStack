@@ -11,4 +11,15 @@ mat-spinner{
   margin: auto;
 }
 
+.posts-image{
+  width: 100%;
+}
+
+.posts-image img{
+  width: 100%;
+  border-radius: 2%;
+  box-shadow:  0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+
+  margin: auto;
+}
 /* targets the element itself */
